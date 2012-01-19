@@ -1,0 +1,21 @@
+%h1 Listing ideas
+
+%table
+  %tr
+    %th Title
+    %th Description
+    %th
+    %th
+    %th
+
+  - @ideas.each do |idea|
+    %tr
+      %td= idea.title
+      %td= idea.description
+      %td= link_to 'Show', idea
+      %td= link_to 'Edit', edit_idea_path(idea)
+      %td= link_to 'Destroy', idea, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Idea', new_idea_path
