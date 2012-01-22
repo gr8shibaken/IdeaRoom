@@ -1,7 +1,13 @@
 IdeaRoom::Application.routes.draw do
+  get     "sessions/new"
+  post    "sessions/create"
+  delete  "sessions/destroy"
+
+  resources :users
+
   resources :ideas
   resources :comments
-  root :to => 'ideas#welcome'
+  root :to => 'sessions#new'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

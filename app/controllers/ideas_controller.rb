@@ -1,10 +1,7 @@
 class IdeasController < ApplicationController
+  before_filter :login_check
   # GET /ideas
-  # GET /ideas.json
-  def welcome
-    redirect_to idea_path(1)
-  end
-  
+  # GET /ideas.json  
   def index
     @ideas = Idea.all
 

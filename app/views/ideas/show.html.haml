@@ -1,3 +1,6 @@
+= image_tag("/images/users/#{current_user.name}.jpg", :size=>'50x50')
+= link_to 'Logout', sessions_destroy_path, :method => 'delete'
+
 %p
   %b Title:
   = @idea.title
@@ -11,9 +14,7 @@
 
 = form_for @comment, :url => {:action => 'create', :controller => 'comments'}  do |f|
   = f.hidden_field :idea_id, :value => @idea.id
-  .field
-    = f.label :name
-    = f.text_field :name
+  = f.hidden_field :user_id, :value => current_user.id
   .field
     = f.label :description
     = f.text_area :description
@@ -22,34 +23,35 @@
     - Constants::Hat.all.each_with_index do |hat,index|
       - if index == 0
         = f.radio_button :hat_id, hat.id, :checked => true
-        = hat.name
       - else
         = f.radio_button :hat_id, hat.id
-        = hat.name
+      = hat.name
   .actions
     = f.submit 'Save'
 
 %hr{:style => 'border-color:red'}
   - @idea.comments.each do |comment|
-    %p= comment.name
+    %p= comment.user.name
     %p= comment.description
     %p= Constants::Hat.find(comment.hat_id).name
     %hr
     = form_tag '/comments' do
       = hidden_field_tag :idea_id, @idea.id
       = hidden_field :comment, :parent_id, :value => comment.id
-      .field
-        = text_field :comment, :name
+      = hidden_field :comment, :user_id  , :value => current_user.id
       .field
         = text_area :comment, :description
       .field
-        - Constants::Hat.all.each do |hat|
-          = radio_button :comment, :hat_id, hat.id
+        - Constants::Hat.all.each_with_index do |hat,index|
+          - if index == 0
+            = radio_button :comment, :hat_id, hat.id, :checked => true
+          - else
+            = radio_button :comment, :hat_id, hat.id
           = hat.name
       = submit_tag
     %hr
     - comment.children.each do |children|
-      %p= children.name
+      %p= children.user.name
       %p= children.description
       %p= Constants::Hat.find(children.hat_id).name
       %hr
