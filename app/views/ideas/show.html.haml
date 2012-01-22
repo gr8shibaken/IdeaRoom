@@ -8,5 +8,34 @@
   = @idea.description
 
 = link_to 'Edit', edit_idea_path(@idea)
-\|
-= link_to 'Back', ideas_path
+
+%hr
+
+= form_for @comment, :url => {:action => 'create', :controller => 'comments'}  do |f|
+  -if @comment.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this idea from being saved:"
+      %ul
+        - @comment.errors.full_messages.each do |msg|
+          %li= msg
+  = f.hidden_field :idea_id, :value => @idea.id
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :hat
+    - Constants::Hat.all.each do |hat|
+      = f.radio_button :hat_id, hat.id
+      = hat.name
+  .actions
+    = f.submit 'Save'
+
+%hr
+  - @idea.comments.each do |comment|
+    %p= comment.name
+    %p= comment.description
+    %p= Constants::Hat.find(comment.hat_id).name
+    %hr

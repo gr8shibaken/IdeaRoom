@@ -1,6 +1,8 @@
 IdeaRoom::Application.routes.draw do
   resources :ideas
-
+  resources :comments
+  root :to => 'ideas#welcome'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
