@@ -5,6 +5,7 @@ class CreateComments < ActiveRecord::Migration
       t.text       :description
       t.integer    :hat_id
       t.references :idea
+      t.integer    :parent_id
       t.timestamps
     end
   end

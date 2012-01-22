@@ -64,7 +64,7 @@ class IdeasController < ApplicationController
     @idea = Idea.find(params[:id])
     respond_to do |format|
       if @idea.update_attributes(params[:idea])
-        format.html { redirect_to @idea, notice: 'Idea was successfully updated.' }
+        format.html { redirect_to @idea }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

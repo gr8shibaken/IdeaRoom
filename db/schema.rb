@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20120119130147) do
     t.text     "description"
     t.integer  "hat_id"
     t.integer  "idea_id"
+    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
