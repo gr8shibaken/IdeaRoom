@@ -1,0 +1,10 @@
+!!!
+%html
+  %head
+    %title IdeaRoom
+    -#= stylesheet_link_tag "application"
+    = stylesheet_link_tag "/stylesheets/development.css"
+    = csrf_meta_tags
+  %body
+  = yield
+
