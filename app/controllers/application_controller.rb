@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :authenticate
+<<<<<<< HEAD
+=======
+  helper_method :current_user
+>>>>>>> style
   
   USERNAME = "admin"
   PASSWORD = "purplecow"
@@ -11,5 +15,23 @@ class ApplicationController < ActionController::Base
       (@name = name) == USERNAME && password == PASSWORD
       end
   end
+<<<<<<< HEAD
+=======
+  
+  def login_check
+    redirect_to root_path if current_user.nil?
+  end
+  
+  def current_user
+    if session[:user_id]
+      @current_user = User.find(session[:user_id])
+    end
+  end
+  
+  def current_user=(user)
+    @current_user = user
+    session[:user_id] = user.id
+  end
+>>>>>>> style
 
 end

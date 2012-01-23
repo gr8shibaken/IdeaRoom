@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #container
   #main
     
@@ -56,3 +57,97 @@
           %p= Constants::Hat.find(children.hat_id).name
           %hr
         %hr{:style => 'border-color:blue'}
+=======
+:javascript
+  function displayControl(index){
+    var element = '#' + index;
+    if ($(element).css("display") == "block"){
+      $(element).hide();
+    } else {
+      $(element).show();
+    }
+  }
+#container
+  #header
+    #logoArea.left
+      IdeaRoom
+    #linkArea.right
+      = link_to 'Logout', sessions_destroy_path
+    .clear
+  #main
+    #ideaDetailContainer
+      .header
+        Idea Title:
+      .contents= @idea.title
+      .header
+        Description:
+      .contents= simple_format @idea.description
+      .right= link_to 'Edit', edit_idea_path(@idea)
+      .clear
+    .commentContainer.bottom
+      = form_for @comment, :url => {:action => 'create', :controller => 'comments'}  do |f|
+        = f.hidden_field :idea_id, :value => @idea.id
+        = f.hidden_field :user_id, :value => current_user.id 
+        #top
+          #photoArea
+            = image_tag("/images/users/#{current_user.name}.jpg", :size => '60x60')
+          #commentArea
+            = f.text_area :description, :class => 'commentTextArea'
+          .clear
+        #bottom
+          #hatArea
+            - Constants::Hat.all.each_with_index do |hat,index|
+              - if index == 0
+                = f.radio_button :hat_id, hat.id, :checked => true
+              - else
+                = f.radio_button :hat_id, hat.id
+              %span.hat{:class => hat.name}　
+          #buttonArea
+            = f.submit '投稿する'
+          .clear
+      
+    #commentHeader Comments
+    - @comments.each do |comment|
+      .commentContainer.top{:class => "#{Constants::Hat.find(comment.hat_id).name}"}
+        #top
+          #photoArea
+            = image_tag("/images/users/#{comment.user.name}.jpg", :size => '60x60')
+          #commentArea
+            = simple_format comment.description
+          .clear
+        #bottom
+          = link_to 'コメントする', '#', :onclick => "displayControl(#{comment.id})"
+      .commentContainer.bottom{:id => comment.id, :style => "display:none;"}
+        = form_tag '/comments' do
+          = hidden_field_tag :idea_id, @idea.id
+          = hidden_field :comment, :parent_id, :value => comment.id
+          = hidden_field :comment, :user_id  , :value => current_user.id
+          #top
+            #photoArea
+              = image_tag("/images/users/#{current_user.name}.jpg", :size => '60x60')
+            #commentArea
+              = text_area :comment, :description, :class => 'commentTextArea'
+            .clear
+          #bottom
+            #hatArea
+              - Constants::Hat.all.each_with_index do |hat,index|
+                - if index == 0
+                  = radio_button :comment, :hat_id, hat.id, :checked => true
+                - else
+                  = radio_button :comment, :hat_id, hat.id
+                %span.hat{:class => hat.name}　
+            #buttonArea
+              = submit_tag '投稿する'
+            .clear
+      - comment.children.each do |child|
+        .commentContainer.bottom{:class => "#{Constants::Hat.find(child.hat_id).name}"}
+          #top
+            #photoArea
+              = image_tag("/images/users/#{child.user.name}.jpg", :size => '60x60')
+            #commentArea
+              = simple_format child.description
+            .clear
+      %br
+      %br
+      %br
+>>>>>>> style

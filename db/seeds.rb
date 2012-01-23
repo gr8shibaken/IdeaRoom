@@ -13,6 +13,10 @@
 #   :description => 'description'
 # )
 
+users = ['shibata','teshima','kudo','kawahito']
+users.each do |user|
+  User.create!(:name => user)
+end
 
 Idea.create!(
   :title        => 'My App List',
