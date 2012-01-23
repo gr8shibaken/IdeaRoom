@@ -5,15 +5,9 @@
 * {margin:0;padding:0;}
 
 body {
-<<<<<<< HEAD
-    font-family: "Helvetica Neue",helvetica,Arial,'Hiragino Kaku Gothic Pro',sans-serif;
-    font-size: 14px;
-    color: #222222;
-=======
   font-family: "Helvetica Neue",helvetica,Arial,'Hiragino Kaku Gothic Pro',sans-serif;
   font-size: 14px;
   color: #333333;
->>>>>>> style
 }
 
 .left {
@@ -49,7 +43,6 @@ body {
 }
 
 div#container {
-<<<<<<< HEAD
   margin:auto;
   width:800px;
   border-left:1px solid #dddddd;
@@ -61,10 +54,6 @@ div#container {
 div#main {
   min-height:490px;
   padding:10px 20px;
-}
-=======
-  margin:10px;
-  width:650px;
 }
 
 div#header {
@@ -198,6 +187,3 @@ div#commentHeader{
   font-size: 16px;
   font-weight: bold;
 }
-
-
->>>>>>> style

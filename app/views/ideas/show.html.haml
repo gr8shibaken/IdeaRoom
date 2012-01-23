@@ -1,63 +1,3 @@
-<<<<<<< HEAD
-#container
-  #main
-    
-    #parentCommentContainer
-      = form_for @comment, :url => {:action => 'create', :controller => 'comments'}  do |f|
-        = f.hidden_field :idea_id, :value => @idea.id
-        .field
-          = f.label :name
-          = f.text_field :name
-        .field
-          = f.label :description
-          = f.text_area :description
-        .field
-          = f.label :hat
-          - Constants::Hat.all.each_with_index do |hat,index|
-            - if index == 0
-              = f.radio_button :hat_id, hat.id, :checked => true
-              = hat.name
-            - else
-              = f.radio_button :hat_id, hat.id
-              = hat.name
-        .actions
-          = f.submit 'Save'
-    %hr{:style => 'border-color:red'}
-    %p
-      %b Title:
-      = @idea.title
-    %p
-      %b Description:
-      = @idea.description
-
-    = link_to 'Edit', edit_idea_path(@idea)
-
-    %hr{:style => 'border-color:red'}
-      - @idea.comments.each do |comment|
-        %p= comment.name
-        %p= comment.description
-        %p= Constants::Hat.find(comment.hat_id).name
-        %hr
-        = form_tag '/comments' do
-          = hidden_field_tag :idea_id, @idea.id
-          = hidden_field :comment, :parent_id, :value => comment.id
-          .field
-            = text_field :comment, :name
-          .field
-            = text_area :comment, :description
-          .field
-            - Constants::Hat.all.each do |hat|
-              = radio_button :comment, :hat_id, hat.id
-              = hat.name
-          = submit_tag
-        %hr
-        - comment.children.each do |children|
-          %p= children.name
-          %p= children.description
-          %p= Constants::Hat.find(children.hat_id).name
-          %hr
-        %hr{:style => 'border-color:blue'}
-=======
 :javascript
   function displayControl(index){
     var element = '#' + index;
@@ -150,4 +90,3 @@
       %br
       %br
       %br
->>>>>>> style
