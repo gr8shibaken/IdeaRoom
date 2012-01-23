@@ -1,10 +1,7 @@
 class IdeasController < ApplicationController
+  before_filter :login_check
   # GET /ideas
-  # GET /ideas.json
-  def welcome
-    redirect_to idea_path(1)
-  end
-  
+  # GET /ideas.json  
   def index
     @ideas = Idea.all
 
@@ -18,6 +15,21 @@ class IdeasController < ApplicationController
   # GET /ideas/1.json
   def show
     @idea = Idea.find(params[:id])
+    
+    comments_has_children = []
+    comments_hasnot_children = []
+    @idea.comments.each{|comment|
+      if comment.children.blank?
+        comments_hasnot_children << comment
+      else
+        comments_has_children << comment
+      end
+    }
+    comments_has_children.sort!{|a,b|
+      b.children.last.created_at <=> a.children.last.created_at
+    }
+    @comments = comments_has_children + comments_hasnot_children 
+    
     @comment = Comment.new
 
     respond_to do |format|

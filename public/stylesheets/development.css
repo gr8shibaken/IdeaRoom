@@ -5,9 +5,9 @@
 * {margin:0;padding:0;}
 
 body {
-    font-family: "Helvetica Neue",helvetica,Arial,'Hiragino Kaku Gothic Pro',sans-serif;
-    font-size: 14px;
-    color: #222222;
+  font-family: "Helvetica Neue",helvetica,Arial,'Hiragino Kaku Gothic Pro',sans-serif;
+  font-size: 14px;
+  color: #333333;
 }
 
 .left {
@@ -43,15 +43,140 @@ body {
 }
 
 div#container {
-  margin:auto;
-  width:800px;
-  border-left:1px solid #dddddd;
-  border-right:1px solid #dddddd;
-  border-bottom:1px solid #dddddd;
-  background:#ffffff;
+  margin:10px;
+  width:650px;
+}
+
+div#header {
+  padding: 10px;
+}
+
+div#header div#logoArea{
+  font-size: 25px;
 }
 
 div#main {
-  min-height:490px;
-  padding:10px 20px;
+  padding:15px;
 }
+
+div.commentContainer{
+  padding:15px;
+}
+
+div.commentContainer.top{
+  border: 1px solid gray;
+}
+
+div.commentContainer.bottom{
+  border-left:1px solid gray;
+  border-right:1px solid gray;
+  border-bottom:1px solid gray;
+}
+
+div.commentContainer.red {
+  background: red;
+}
+
+div.commentContainer.white {
+  background: white;
+}
+
+div.commentContainer.black {
+  background: black;
+  color: white;
+}
+
+div.commentContainer.yellow {
+  background: yellow;
+}
+
+div.commentContainer.blue {
+  background: blue;
+}
+
+div.commentContainer.green {
+  background: green;
+}
+
+
+div.commentContainer div#top{
+}
+
+div.commentContainer div#top div#photoArea{
+  float:left;
+}
+
+div.commentContainer div#top div#commentArea{
+  padding-left: 15px;
+  float:left;
+}
+
+div.commentContainer div#bottom{
+  padding-top: 15px;
+}
+
+div.commentContainer div#bottom div#hatArea{
+  float:left;
+}
+
+div.commentContainer div#bottom div#buttonArea{
+  float:left;
+  padding-left: 15px;
+}
+
+.commentTextArea {
+  height:60px;
+  width:400px;
+}
+span.hat {
+  min-height:20px;
+  min-width:20px;
+  border: 1px solid gray;
+}
+
+span.hat.red {
+  background: red;
+}
+
+span.hat.white {
+  background: white;
+}
+
+span.hat.black {
+  background: black;
+}
+
+span.hat.yellow {
+  background: yellow;
+}
+
+span.hat.blue {
+  background: blue;
+}
+
+span.hat.green {
+  background: green;
+}
+
+div#ideaDetailContainer{
+  padding: 10px 15px;
+  border: 1px solid gray;
+  background: #eeeeee;
+}
+
+div#ideaDetailContainer div.header{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+div#ideaDetailContainer div.contents{
+  padding: 5px 15px;
+}
+
+div#commentHeader{
+  padding: 30px 0px 10px 0px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
