@@ -16,6 +16,7 @@ class IdeasController < ApplicationController
   def show
     @idea = Idea.find(params[:id])
     
+#=begin
     comments_has_children = []
     comments_hasnot_children = []
     @idea.comments.each{|comment|
@@ -29,7 +30,9 @@ class IdeasController < ApplicationController
       b.children.last.created_at <=> a.children.last.created_at
     }
     @comments = comments_has_children + comments_hasnot_children 
-    
+#=end
+
+
     @comment = Comment.new
 
     respond_to do |format|
